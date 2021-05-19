@@ -1,10 +1,16 @@
-{% extends "base.html.twig" %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Wild Séries
 {% endblock %}
 
-{% block stylesheets %}{% endblock %}
+{% block stylesheets %}
+  
+ {{ parent() }}
+{% endblock %}
 
 {% block body %}
+{% include '_navbar.html.twig' %}
 	<h1>Welcome !</h1>
+
+
 {% endblock %}

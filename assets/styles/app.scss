@@ -1,0 +1,29 @@
+@import "~bootstrap/scss/bootstrap";
+$lightColor: #F8F1F1;
+$primaryColor: #16697A;
+$secondaryColor: #DB6400;
+$elementColor: #FFA62B;
+$titleFont: 'Rufina',
+serif;
+$textFont: 'Open Sans',
+sans-serif;
+
+
+body {
+    background-color: $lightColor;
+
+}
+
+.navbar {
+    background-color: $primaryColor;
+    color: $lightColor;
+
+    .navLinks {
+
+        color: $lightColor;
+
+        &:hover {
+            color: $elementColor;
+        }
+    }
+}
