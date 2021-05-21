@@ -1,4 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
+
+
 $lightColor: #F8F1F1;
 $primaryColor: #16697A;
 $secondaryColor: #DB6400;
@@ -18,12 +20,21 @@ body {
     background-color: $primaryColor;
     color: $lightColor;
 
-    .navLinks {
 
-        color: $lightColor;
+}
 
-        &:hover {
-            color: $elementColor;
-        }
+.navbar-brand {
+    color: $lightColor;
+    text-decoration: none;
+}
+
+
+.nav-link {
+    font-weight: 600;
+    color: $lightColor;
+
+    &:hover {
+        color: $elementColor !important;
     }
+
 }
