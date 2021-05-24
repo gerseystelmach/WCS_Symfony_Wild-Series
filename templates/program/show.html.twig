@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Wild Séries | Série {{ id }}
+{% endblock %}
+
+{% block stylesheets %}
+  
+ {{ parent() }}
+{% endblock %}
+
+	{% block body %}
+    {% include '/components/_navbar.html.twig' %}
+    <h1>Série nº: {{ id }}</h1>
+
+
+    {% endblock %}
