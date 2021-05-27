@@ -1,16 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Wild Séries | Série {{ id }}
+{% block title %}Wild Séries | Serie
+	{{ program.id }}
+	{{ program.title }}
 {% endblock %}
 
 {% block stylesheets %}
-  
- {{ parent() }}
+
+	{{ parent() }}
 {% endblock %}
 
-	{% block body %}
-    {% include '/components/_navbar.html.twig' %}
-    <h1>Série nº: {{ id }}</h1>
+{% block body %}
+	<section class="container">
+		<div class="media">
+			<img class="align-self-start mr-3 w-50" src="{{program.poster}}" alt="{{ program.title }} poster">
+			<div class="media-body">
+				<h1 class="mt-5">{{ program.title }}</h1>
+				<p>
+					<span class="fw-bold">Category :</span>
+					{{ program.category.name }}</p>
+			</div>
 
+			<p>{{ program.summary }}</p>
 
-    {% endblock %}
+			<a href="{{ path('program_index') }}">
+				Return to the Programs page
+			</a>
+		</section>
+
+	{% endblock %}

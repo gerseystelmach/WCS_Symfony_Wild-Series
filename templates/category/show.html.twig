@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Wild Séries | 
+	{{ name|capitalize }}
+{% endblock %}
+
+{% block stylesheets %}
+
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+<h1>All series of {{name|capitalize}}</h1>
+    {% for program in programs %}
+        <div class="py-3">
+            <a href="{{ path("program_show", { id: program.id }) }}"><h2 class="fw-bold">{{ program.id }} - {{ program.title }}</h2></a>
+            <p>{{ program.summary }}</p>
+             
+        </div>
+    {% else %}
+        No serie found in this category :(
+    {% endfor %}
+
+
+	{% endblock %}
