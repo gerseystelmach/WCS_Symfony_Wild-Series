@@ -16,6 +16,7 @@ body {
     background-color: $lightColor;
     font-family: $titleFont;
 
+
 }
 
 h1,
@@ -24,6 +25,11 @@ h3,
 h4,
 h5 {
     font-family: $titleFont;
+}
+
+p,
+span {
+    font-size: 2em;
 }
 
 .navbar {
