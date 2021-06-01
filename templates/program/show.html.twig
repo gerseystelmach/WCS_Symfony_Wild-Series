@@ -12,16 +12,43 @@
 
 {% block body %}
 	<section class="container">
-		<div class="media">
-			<img class="align-self-start mr-3 w-50" src="{{program.poster}}" alt="{{ program.title }} poster">
-			<div class="media-body">
+		<div class="row">
+			<div class="col-4 mt-5">
+				<img class="align-self-start  w-100 mt-5 p-5" src="{{program.poster}}" alt="{{ program.title }} poster">
+			</div>
+			<div class="col-8 mt-5">
+
 				<h1 class="mt-5">{{ program.title }}</h1>
 				<p>
-					<span class="fw-bold">Category :</span>
+					<span class="fw-bold mt-5">Category :</span>
 					{{ program.category.name }}</p>
+				<p>
+					<span class="fw-bold mt-5">Summary :</span>
+					{{ program.summary }}</p>
+
+				{% for season in seasons %}
+
+					<p>
+						<a href="{{ path("program_season_show", {programId: program.id, seasonId: season.id}) }}">
+							Season
+							<span class="fw-bold">{{ season.number }}</span>
+						</a>
+
+						-
+						<span class="fw-bold">Release year:</span>
+						{{ season.year }}</p>
+
+					<p>
+						<span class="fw-bold">Description:</span>
+						{{ season.description }}</p>
+
+				{% else %}
+					No serie found in this category :(
+				{% endfor %}
+
+
 			</div>
 
-			<p>{{ program.summary }}</p>
 
 			<a href="{{ path('program_index') }}">
 				Return to the Programs page
