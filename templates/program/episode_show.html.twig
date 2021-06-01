@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Wild Séries | 
+		Serie
+
+	{{ program.title }}
+	Episode
+	{{ episode.number }}
+{% endblock %}
+
+{% block stylesheets %}
+
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	<section class="container">
+		<div class="row">
+			<div class="col col-md-6 col-lg-4 mt-5">
+				<img class="align-self-start  w-100 mt-5 p-5" src="{{program.poster}}" alt="{{ program.title }} poster">
+			</div>
+			<div class="col col-md-6 col-lg-8 mt-5">
+
+				<h1 class="mt-5">{{program.title}}
+					| Season
+					{{ season.number }}
+					| Episode
+					{{ episode.number }}</h1>
+
+				<h2 class="mt-5">{{ episode.title }}</h2>
+				<p>
+					<span class="fw-bold">Description:
+					</span>
+					{{ season.description }}</p>
+
+
+				<p class="mb-5">
+					<span class="fw-bold">Synopsis:</span>
+					{{episode.synopsis}}</p>
+
+			</div>
+		
+		<a class="btn btn-dark  w-25 m-auto"href="{{ path('program_index') }}">
+			Return to the Programs page
+		</a>
+		</div>
+	</section>
+
+{% endblock %}

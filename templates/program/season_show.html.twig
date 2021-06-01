@@ -1,11 +1,11 @@
-
 {% extends 'base.html.twig' %}
 
 {% block title %}Wild Séries | 
-	Serie
-	
+		Serie
+
 	{{ program.title }}
-    Season {{ season.number }}
+	Season
+	{{ season.number }}
 {% endblock %}
 
 {% block stylesheets %}
@@ -15,34 +15,39 @@
 
 {% block body %}
 
-<section class="container">
+	<section class="container">
 		<div class="row">
 			<div class="col-4 mt-5">
 				<img class="align-self-start  w-100 mt-5 p-5" src="{{program.poster}}" alt="{{ program.title }} poster">
 			</div>
 			<div class="col-8 mt-5">
 
-				<h1 class="mt-5">{{program.title}} | Season {{ season.number }}</h1>
-				
-                <p><span class="fw-bold">Description: </span>{{ season.description }}</p>
+				<h1 class="mt-5">{{program.title}}
+					| Season
+					{{ season.number }}</h1>
 
-              
-                
-                {% for episode in episodes %}
+				<p>
+					<span class="fw-bold">Description:
+					</span>
+					{{ season.description }}</p>
 
-                   
-                    <p><span class="fw-bold">Episode {{episode.number}}</span> | <span class="fw-bold">Title:</span>  {{ episode.title }} </p>
-                     <p class="mb-5"><span class="fw-bold">Synopsis:</span>  {{episode.synopsis}}</p>
+				{% for episode in episodes %}
+
+					<a class="btn btn-secondary d-block my-3 w-25" href="{{ path("program_episode_show", {"program_id": program.id, "season_id": season.id, "episode_id": episode.id}) }}">
+						<span class="fw-bold">Episode
+							{{episode.number}}</span>
+						-
+						{{ episode.title }}</span>
+				</a>
 
 
+			{% endfor %}
 
-                    {% endfor %}
-                
-				
+		</div>
+		<a class="btn btn-dark  w-25 m-auto my-5" href="{{ path('program_index') }}">
+		Return to the Programs page
+	</a>
+	</div>
 
-			<a href="{{ path('program_index') }}">
-				Return to the Programs page
-			</a>
-		</section>
-
-{% endblock %}
+	
+</section>{% endblock %}

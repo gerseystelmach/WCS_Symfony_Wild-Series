@@ -13,10 +13,10 @@
 {% block body %}
 	<section class="container">
 		<div class="row">
-			<div class="col-4 mt-5">
+			<div class="col col-sm-12 col-md-12 col-lg-4 mt-5">
 				<img class="align-self-start  w-100 mt-5 p-5" src="{{program.poster}}" alt="{{ program.title }} poster">
 			</div>
-			<div class="col-8 mt-5">
+			<div class="col col-sm-12 col-md-12 col-lg-8 mt-5">
 
 				<h1 class="mt-5">{{ program.title }}</h1>
 				<p>
@@ -29,7 +29,7 @@
 				{% for season in seasons %}
 
 					<p>
-						<a href="{{ path("program_season_show", {programId: program.id, seasonId: season.id}) }}">
+						<a class="btn btn-secondary" href="{{ path("program_season_show", {"program_id": program.id, "season_id": season.id}) }}">
 							Season
 							<span class="fw-bold">{{ season.number }}</span>
 						</a>
@@ -45,14 +45,13 @@
 				{% else %}
 					No serie found in this category :(
 				{% endfor %}
-
-
 			</div>
 
-
-			<a href="{{ path('program_index') }}">
+			<a class="btn btn-dark w-25 m-auto my-5" href="{{ path('program_index') }}">
 				Return to the Programs page
 			</a>
-		</section>
 
-	{% endblock %}
+		</div>
+	</section>
+
+{% endblock %}
