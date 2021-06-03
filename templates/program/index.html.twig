@@ -5,7 +5,14 @@
 {% block body %}
 
 <div class="container">
+<header>
+
     <h1 class="my-5">You can find in here all the series:</h1>
+
+<h3 class="mb-5">Didn't you find a serie? <a class="btn btn-success mx-5" href="/programs/new">Add a new serie</a> </h3>
+
+    </header>
+
     {% for program in programs %}
         <div class="py-3">
              <a class="link-secondary" href="{{ path("program_show", { "program_id": program.id }) }}"><h2 class="fw-bold">{{ loop.index }} : {{ program.title }}</h2></a>

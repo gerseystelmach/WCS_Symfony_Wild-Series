@@ -3,7 +3,14 @@
 {% block title %}Wild Series | Category{% endblock %}
 
 {% block body %}
-    <h1>You can find in here all our series:</h1>
+<main class="container">
+       <header>
+
+    <h1 class="my-5">Find your favorite category to see all the related series:</h1>
+
+<h3 class="mb-5">Didn't you find a category? <a class="btn btn-success mx-5" href="/categories/new">Add a new category</a> </h3>
+
+    </header>
     {% for category in categories %}
         
         <div class="py-3">
@@ -15,7 +22,10 @@
         No category found.
     {% endfor %}
 
-    <a href="{{ path('app_index') }}">
+    <a class="btn btn-dark m-auto" href="{{ path('app_index') }}">
         Return to home page
     </a>
+
+
+    </main>
 {% endblock %}

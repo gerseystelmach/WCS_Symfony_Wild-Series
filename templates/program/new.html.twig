@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+	<main>
+		<header>
+			<h1 class="text-center py-5">Add a new Program:</h1>
+		</header>
+		<div class="container">
+			{{ form_start(form) }}
+			{{ form_errors(form) }}
+
+			{{ form_row(form.title)}}
+			{{ form_row(form.summary)}}
+			{{ form_row(form.poster)}}
+			{{ form_row(form.category)}}</br>
+
+			<input type='submit' value='Add Program'>
+			{{ form_end(form) }}
+		</div>
+	</main>
+{% endblock %}
