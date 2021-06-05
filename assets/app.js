@@ -10,7 +10,8 @@ import './styles/app.scss';
 
 // start the Stimulus application
 import './bootstrap';
-import 'popper.js';
 require('bootstrap');
+import 'popper.js';
+
 
 console.log('Hello Webpack Encore !')
