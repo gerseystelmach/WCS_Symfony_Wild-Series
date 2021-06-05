@@ -5,10 +5,13 @@ namespace App\Entity;
 use App\Repository\ProgramRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ProgramRepository::class)
+ * @UniqueEntity("title", message="This serie is already exists in our site.")
  */
 class Program
 {
@@ -16,22 +19,35 @@ class Program
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * 
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank(message="You must insert a title to the serie.")
+13    * @Assert\Length(
+     *      min = 1,
+     *      max = 255,
+     *      minMessage = "Your title must be at least {{ limit }} characters long",
+     *      maxMessage = "Your title cannot be longer than {{ limit }} characters"
+     * )
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
+     * @Assert\Regex(
+     * pattern="/(?i)(\W|^)(plus\sbelle\sla\svie)(\W|$)/",
+     * match=false,
+     * message="We only talk about real series in here.")
      */
     private $summary;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    */
     private $poster;
 
     /**
