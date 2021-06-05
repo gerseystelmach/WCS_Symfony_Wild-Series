@@ -9,6 +9,7 @@ use App\Entity\Season;
 use App\Entity\Episode;
 use App\Form\ProgramType;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -47,7 +48,7 @@ class ProgramController extends AbstractController
      * @Route("/new", name="new")
      */
 
-    public function new(Request $request) : Response
+    public function new(Request $request, EntityManagerInterface $entityManager) : Response
 
     {
         // Create a new program Object
@@ -57,7 +58,7 @@ class ProgramController extends AbstractController
          // Get data from HTTP request
         $form->handleRequest($request);
         // Was the form submitted ?
-        if ($form->isSubmitted()) 
+        if ($form->isSubmitted() && $form->isValid()) 
         {
         // Deal with the submitted data
         // Get the Entity Manager
