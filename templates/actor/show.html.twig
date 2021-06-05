@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Wild Séries | 
+{% endblock %}
+
+{% block body %}
+<main class="container">
+    <h1 class="text-center my-5"> More of {{ actor.name}}:</h1>
+
+     
+    <h2>Starred in:</h2>
+    
+        {% for program in actor.programs %}
+            <div> <a href="{{ path('program_show', {program_id: program.id}) }}">{{ program.title }}</a></div>  
+        {% endfor %}
+   
+
+
+{% endblock %}

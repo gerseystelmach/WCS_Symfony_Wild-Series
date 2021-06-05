@@ -15,7 +15,7 @@
 
     {% for program in programs %}
         <div class="py-3">
-             <a class="link-secondary" href="{{ path("program_show", { "program_id": program.id }) }}"><h2 class="fw-bold">{{ loop.index }} : {{ program.title }}</h2></a>
+             <a href="{{ path("program_show", { "program_id": program.id }) }}"><h2 class="fw-bold">{{ loop.index }} : {{ program.title }}</h2></a>
            <p><span class="fw-bold">Category:</span> {{ program.category.name }}</p>
             <p><span class="fw-bold">Summary:</span> {{ program.summary }}</p>
            

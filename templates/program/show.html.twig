@@ -19,13 +19,26 @@
 			<div class="col col-sm-12 col-md-12 col-lg-8 mt-5">
 
 				<h1 class="mt-5">{{ program.title }}</h1>
-				<p>
-					<span class="fw-bold mt-5">Category :</span>
-					{{ program.category.name }}</p>
-				<p>
-					<span class="fw-bold mt-5">Summary :</span>
-					{{ program.summary }}</p>
+				<h4 class="mt-5">Category:</h4>
 
+				<p>{{ program.category.name }}</p>
+
+				<h4 class="mt-5">Summary:</h4>
+
+				<p>{{ program.summary }}</p>
+
+				<h4 class="mt-5">Actors :</h2>
+
+				{% for actor in program.actors %}
+
+					<div class="py-2">
+						<a class="link-secondary" href="{{ path('actor_show', {id: actor.id}) }}">{{ actor.name }}</a>
+					</div>
+
+				{% else %}
+					<p class="mb-5">No actor found for this serie</p>
+				{% endfor %}
+				<h4 class="mt-5">Seasons:</h4>
 				{% for season in seasons %}
 
 					<p>
@@ -53,5 +66,4 @@
 
 		</div>
 	</section>
-
 {% endblock %}
