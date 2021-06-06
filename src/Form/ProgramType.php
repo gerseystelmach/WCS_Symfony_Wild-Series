@@ -3,9 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Program;
+use App\Entity\Actor;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ProgramType extends AbstractType
 {
@@ -17,7 +19,14 @@ class ProgramType extends AbstractType
             ->add('poster')
             // This will create a select of all names existing in category's table.
             ->add('category', null, ['choice_label' => 'name'])
-        ;
+            ->add('actors', EntityType::class, [
+                'class' => Actor::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+                // To vinculate actors to the program - calling the setter method (manytomany)
+                'by_reference' => false,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
