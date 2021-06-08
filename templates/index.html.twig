@@ -4,11 +4,27 @@
 {% endblock %}
 
 {% block stylesheets %}
-  
- {{ parent() }}
+
+	{{ parent() }}
+	{{ encore_entry_link_tags('home') }}
 {% endblock %}
 
 {% block body %}
-	<h1>Welcome ! </h1>
+
+<header>
+	<div class="heroImage" style="background-image: url({{ asset('build/images/heroimage.jpg') }})">
+	<div class="d-flex justify-content-center align-items-center">
+		<h1 class="display-4 text-center fw-bold">Retrouvez ici tout 
+		sur vos séries préférées</h1>
+		</div>
+	</div>
+	</header>
+
+	<section>
 	
+	<h2 class="display-5 text-center py-5">The last series</h2>
+	</section>
+
+	
+
 {% endblock %}
