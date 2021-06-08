@@ -1,0 +1,31 @@
+@import '~bootstrap/scss/bootstrap';
+@import '/assets/styles/app.scss';
+
+.heroImage {
+  height: 400px;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  h1 {
+    color: $lightColor;
+    width: 50%;
+    padding: 7%;
+  }
+}
+
+h2 {
+  text-transform: uppercase;
+  color: $secondaryColor;
+
+  &:after {
+    content: '';
+    width: 25%;
+    padding: 0 20px;
+    height: 5px;
+    max-width: 100%;
+    background: $secondaryColor;
+    display: block;
+    margin: auto;
+  }
+}

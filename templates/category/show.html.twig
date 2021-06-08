@@ -14,7 +14,7 @@
 <h1>All series of {{name|capitalize}}</h1>
     {% for program in programs %}
         <div class="py-3">
-            <a href="{{ path("program_show", { id: program.id }) }}"><h2 class="fw-bold">{{ program.id }} - {{ program.title }}</h2></a>
+            <a href="{{ path("program_show", { program_id: program.id }) }}"><h2 class="fw-bold">{{ loop.index }} - {{ program.title }}</h2></a>
             <p>{{ program.summary }}</p>
              
         </div>
