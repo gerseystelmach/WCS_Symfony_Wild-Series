@@ -42,7 +42,7 @@
 				{% for season in seasons %}
 
 					<p>
-						<a class="btn btn-secondary" href="{{ path("program_season_show", {"program_id": program.id, "season_id": season.id}) }}">
+						<a class="btn btn-secondary" href="{{ path("program_season_show", {"program_slug": program.slug, "season_id": season.id}) }}">
 							Season
 							<span class="fw-bold">{{ season.number }}</span>
 						</a>
