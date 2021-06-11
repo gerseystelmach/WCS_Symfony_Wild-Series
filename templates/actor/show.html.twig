@@ -11,7 +11,7 @@
     <h2>Starred in:</h2>
     
         {% for program in actor.programs %}
-            <div> <a href="{{ path('program_show', {program_id: program.id}) }}">{{ program.title }}</a></div>  
+            <div> <a href="{{ path('program_show', {program_slug: program.slug}) }}">{{ program.title }}</a></div>  
         {% endfor %}
    
 

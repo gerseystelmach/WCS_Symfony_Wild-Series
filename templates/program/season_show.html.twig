@@ -33,7 +33,7 @@
 
 				{% for episode in episodes %}
 				{% dump(episode) %}
-					<a class="btn btn-secondary d-block my-3 w-25" href="{{ path("program_episode_show", {"program_id": program.id, "season_id": season.id, "episode_id": episode.id}) }}">
+					<a class="btn btn-secondary d-block my-3 w-25" href="{{ path("program_episode_show", {"program_slug": program.slug, "season_id": season.id, "episode_slug": episode.slug}) }}">
 						<span class="fw-bold">Episode
 							{{episode.number}}</span>
 						-
