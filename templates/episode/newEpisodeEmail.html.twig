@@ -1,0 +1,10 @@
+{% extends 'layoutEmail.html.twig' %}
+
+{% block body %}
+<main class="emailBg">
+    <h1>The episode {{episode.number }} - {{ episode.title }} of program {{ episode.season.program.title }}, season {{episode.season.number}} is now available for you. </h1>
+    <p>Summary of this episode: {{episode.synopsis }}</p>
+    <a href="http://127.0.0.1:8000/programs/{{ episode.season.program.slug }}/seasons/{{episode.season.id}}/episodes/{{ episode.slug }}">Check it out! </a>
+</main>
+</html>
+{% endblock %}
