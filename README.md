@@ -19,3 +19,5 @@ Quête 16 - EntityType https://www.youtube.com/watch?v=vnXdIYRmUOk
 Quête 17 - Fixtures Avancée https://www.youtube.com/watch?v=UlQT7Vmb_Fw
 
 Quête 18 - Service https://www.youtube.com/watch?v=SGGhO8QuPI4
+
+Quête 19 - Mailer https://www.youtube.com/watch?v=kQ4acsKchDA

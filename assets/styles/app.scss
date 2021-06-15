@@ -1,17 +1,17 @@
-@import '~bootstrap/scss/bootstrap';
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&family=Rufina:wght@400;700&display=swap');
+@import "~bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&family=Rufina:wght@400;700&display=swap");
 
 $lightColor: #f8f1f1;
 $primaryColor: #16697a;
 $secondaryColor: #db6400;
 $elementColor: #ffa62b;
-$titleFont: 'Rufina', serif;
-$textFont: 'Open Sans', sans-serif;
+$titleFont: "Rufina", serif;
+$textFont: "Open Sans", sans-serif;
 
 body {
-  background-color: $lightColor;
-  font-family: $titleFont;
-  font-size: 1.4em;
+    background-color: $lightColor;
+    font-family: $titleFont;
+    font-size: 1.4em;
 }
 
 h1,
@@ -19,32 +19,41 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: $titleFont;
+    font-family: $titleFont;
 }
 
 .navbar {
-  background-color: $primaryColor;
-  color: $lightColor;
+    background-color: $primaryColor;
+    color: $lightColor;
 }
 
 .navbar-brand {
-  color: $lightColor;
-  font-family: $titleFont;
-  text-decoration: none;
-  letter-spacing: 3px;
+    color: $lightColor;
+    font-family: $titleFont;
+    text-decoration: none;
+    letter-spacing: 3px;
 }
 
 .nav-link {
-  font-weight: 600;
-  color: $lightColor;
-  font-family: $titleFont;
+    font-weight: 600;
+    color: $lightColor;
+    font-family: $titleFont;
 
-  &:hover {
-    color: $elementColor !important;
-  }
+    &:hover {
+        color: $elementColor !important;
+    }
 }
 
 .heroImage img {
-  width: 100%;
-  height: 400px;
+    width: 100%;
+    height: 400px;
+}
+
+.emailBg {
+    background-color: $primaryColor;
+    color: $lightColor;
+
+    h1 {
+        color: $elementColor;
+    }
 }
