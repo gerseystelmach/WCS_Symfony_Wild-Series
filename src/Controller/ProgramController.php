@@ -4,19 +4,21 @@ namespace App\Controller;
 
 
 
-use App\Entity\Program;
 use App\Entity\Season;
+use App\Entity\Comment;
 use App\Entity\Episode;
-use Symfony\Component\Mime\Email;
-use App\Form\ProgramType;
-use Symfony\Component\Mailer\MailerInterface;
+use App\Entity\Program;
 use App\Service\Slugify;
+use App\Form\ProgramType;
+use App\Form\CommentType;
+use Symfony\Component\Mime\Email;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 
 
@@ -120,6 +122,40 @@ class ProgramController extends AbstractController
                     ]);
     }
 
+      /**
+     * @Route("/{program_slug}/seasons/{season_id}/episodes/{episode_slug}", name="episode_show", methods={"GET", "POST"})
+     * @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"program_slug": "slug"}})
+     * @ParamConverter("season", class="App\Entity\Season", options={"mapping": {"season_id": "id"}})
+     * @ParamConverter("episode", class="App\Entity\Episode", options={"mapping": {"episode_slug": "slug"}})
+     * @return Response
+     */
+
+    public function showEpisode(Request $request, Program $program, Season $season, Episode $episode): Response
+    {
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+        $comment->setEpisode($episode);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($this->getUser()) {
+                $comment->setAuthor($this->getUser());
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($comment);
+                $entityManager->flush();
+                return $this->redirect($request->getUri());
+            }
+        }
+
+        return $this->render('program/episode_show.html.twig', [
+            'program' => $program, 
+            'season' => $season, 
+            'episode' => $episode,
+            'form' => $form->createView(),
+            'comment' => $comment,
+            ]);
+    }
+
     /**
      * @Route("/{program_slug}/seasons/{season_id}", name="season_show", methods={"GET"})
      * * @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"program_slug": "slug"}})
@@ -151,17 +187,5 @@ class ProgramController extends AbstractController
         return $this->render('program/season_show.html.twig', ['program' => $program, 'season' => $season, 'episodes' => $episodes]);
     }
 
-    /**
-     * @Route("/{program_slug}/seasons/{season_id}/episodes/{episode_slug}", name="episode_show", methods={"GET"})
-     * @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"program_slug": "slug"}})
-     * @ParamConverter("season", class="App\Entity\Season", options={"mapping": {"season_id": "id"}})
-     * @ParamConverter("episode", class="App\Entity\Episode", options={"mapping": {"episode_slug": "slug"}})
-     * @return Response
-     */
-
-    public function showEpisode(Program $program, Season $season, Episode $episode): Response
-    {
-         
-        return $this->render('program/episode_show.html.twig', ['program' => $program, 'season' => $season, 'episode' => $episode]);
-    }
+  
 }

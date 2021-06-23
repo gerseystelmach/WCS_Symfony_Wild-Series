@@ -1,50 +1,112 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Wild Séries | 
-		Serie
+                        		Serie
 
-	{{ program.title }}
-	Episode
-	{{ episode.number }}
+    {{ program.title }}
+    Episode
+    {{ episode.number }}
 {% endblock %}
 
 {% block stylesheets %}
 
-	{{ parent() }}
+    {{ parent() }}
 {% endblock %}
 
 {% block body %}
 
-	<section class="container">
-		<div class="row">
-			<div class="col col-md-6 col-lg-4 mt-5">
-				<img class="align-self-start  w-100 mt-5 p-5" src="{{program.poster}}" alt="{{ program.title }} poster">
-			</div>
-			<div class="col col-md-6 col-lg-8 mt-5">
+    <section class="container">
+        <div class="row">
+            <div class="col col-md-6 col-lg-4 mt-5">
+                <img class="align-self-start  w-100 mt-5 p-5" src="{{program.poster}}" alt="{{ program.title }} poster">
 
-				<h1 class="mt-5">{{program.title}}
-					| Season
-					{{ season.number }}
-					| Episode
-					{{ episode.number }}</h1>
+                {% if app.user %}
+                    <div class="text-center">
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addReview">
+                            Review this episode
+                        </button>
+                    </div>
+                    <!-- Modal Form -->
+                    <div class="modal fade" id="addReview" tabindex="-1" aria-labelledby="addReview" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Add your review for this episode</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    {{ form_start(form) }}
 
-				<h2 class="mt-5">{{ episode.title }}</h2>
-				<p>
-					<span class="fw-bold">Description:
-					</span>
-					{{ season.description }}</p>
+                                    {{ form_widget(form) }}
+
+                                    <input class="btn bg-success text-light mt-3" type='submit' value='Add comment'>
+                                    {{ form_end(form) }}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% else %}
+                    <div class="text-center">
+                        <button type="button" class="btn btn-warning">
+                             <a href="{{ path('app_login') }}" class="btn">
+                        Login to review this episode</a>
+                        </button>
+                    </div>
+                    
+                {% endif %}
+            </div>
+            <div class="col col-md-6 col-lg-8 mt-5">
+
+                <h1 class="mt-5">{{program.title}}</h1>
+                <span class="badge bg-dark rounded-pill">
+                    Season
+                    {{ season.number }}</span>
+                <span class="badge bg-secondary rounded-pill">Episode
+                    {{ episode.number }}</span>
+
+                <h2 class="mt-5">{{ episode.title }}</h2>
+                <p>
+                    <span class="fw-bold">Description:
+                    </span>
+                    {{ season.description }}
+                </p>
+
+                <p class="mb-5">
+                    <span class="fw-bold">Synopsis:</span>
+                    {{episode.synopsis}}
+                </p>
+
+                <h2 class="fw-bold">User Reviews</h2>
+
+                {% for comment in episode.comments | reverse %}
+
+                    <div class="card my-3">
+                       <h4 class="card-header">Review n. {{ comment.id }} by
+                            {{ comment.author.email }}</h4>
+                        <div class="card-body">
+                            <p>{{ comment.comment }}</p>
+                            <h4 class="fw-bold">Rate:
+                                <span>
+                                    {{ comment.rate }}</span>
+                            </h4>
+
+                        </div>
+                    </div>
 
 
-				<p class="mb-5">
-					<span class="fw-bold">Synopsis:</span>
-					{{episode.synopsis}}</p>
+                {% endfor %}
+            </div>
 
-			</div>
-		
-		<a class="btn btn-dark  w-25 m-auto"href="{{ path('program_index') }}">
-			Return to the Programs page
-		</a>
-		</div>
-	</section>
+
+            <a class="btn btn-dark  w-25 m-auto" href="{{ path('program_index') }}">
+                Return to the Programs page
+            </a>
+        </div>
+    </section>
 
 {% endblock %}
