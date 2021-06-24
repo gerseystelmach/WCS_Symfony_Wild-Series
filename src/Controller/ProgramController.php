@@ -80,7 +80,7 @@ class ProgramController extends AbstractController
                 ->from($this->getParameter('mailer_from'))
                 ->to('gerseystelmach@gmail.com')
                 ->subject('Une nouvelle série vient d\'être publiée !')
-                ->html($this->renderView('Program/newProgramEmail.html.twig', ['program' => $program]));
+                ->html($this->renderView('program/newProgramEmail.html.twig', ['program' => $program]));
                 $mailer->send($email);
         // Finally redirect to categories list
         return $this->redirectToRoute('program_index');

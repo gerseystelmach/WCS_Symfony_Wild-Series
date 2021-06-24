@@ -2,16 +2,21 @@
 
 namespace App\Entity;
 
+use DateTime;
+use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProgramRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Doctrine\ORM\Mapping as ORM;
+ //Ici on importe le package Vich, que l’on utilisera sous l’alias “Vich”
+ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=ProgramRepository::class)
  * @UniqueEntity("title", message="This serie is already exists in our site.")
+ * @Vich\Uploadable //On précise à l’entité que nous utiliserons l’upload du package Vich uploader
  */
 class Program
 {
@@ -48,7 +53,20 @@ class Program
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
     */
+
     private $poster;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+     /**
+      * @Vich\UploadableField(mapping="poster_file", fileNameProperty="poster")
+      * @var File
+      */
+
+    private $posterFile;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="programs")
@@ -77,9 +95,46 @@ class Program
         $this->actors = new ArrayCollection();
     }
 
+   /**
+     * Set the value of posterFile
+     *
+     * @param  File  $posterFile
+     *
+     * @return  self
+     */
+    public function setPosterFile(File $posterFile = null): Program
+    {
+        $this->posterFile = $posterFile;
+        if ($posterFile) {
+            $this->updatedAt = new DateTime('now');
+        }
 
+        return $this;
+    }
 
-    public function getId(): ?int
+     /**
+     * Get the value of posterFile
+     *
+     * @return  File
+     */ 
+    public function getPosterFile(): ?File
+    {
+        return $this->posterFile;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+       public function getId(): ?int
     {
         return $this->id;
     }
@@ -201,3 +256,6 @@ class Program
         return $this;
     }
 }
+
+
+
