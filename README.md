@@ -23,3 +23,5 @@ Quête 18 - Service https://www.youtube.com/watch?v=SGGhO8QuPI4
 Quête 19 - Mailer https://www.youtube.com/watch?v=kQ4acsKchDA
 
 Quête 20 - Gestion des utilisateurs https://www.youtube.com/watch?v=QFEfrVIW2rU
+
+Quête 28 - Upload de médias avec Vich Upload  https://www.youtube.com/watch?v=KIfZX_5VboI
