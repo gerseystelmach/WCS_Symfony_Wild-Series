@@ -8,3 +8,5 @@ vich_uploader:
             # Chemin vers le dossier de stockage
             upload_destination: '%upload_directory%'
             namer: vich_uploader.namer_uniqid
+
+          

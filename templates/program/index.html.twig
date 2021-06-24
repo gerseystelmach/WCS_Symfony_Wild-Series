@@ -21,7 +21,7 @@
 			{% for program in programs %}
 				<div class="row">
 					<div class="col col-sm-12 col-md-12 col-lg-4">
-						<img class="align-self-start  w-100 p-5" src="{{ asset('/uploads/' ~ program.poster) }}" alt="{{ program.title }} poster">
+						<img class="align-self-start  w-100 p-5" src="{{ vich_uploader_asset(program) }}" alt="{{ program.title }} poster">
 					</div>
 
 					<div class="col col-sm-12 col-md-12 col-lg-8 mt-5">
