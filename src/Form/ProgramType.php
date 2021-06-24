@@ -19,7 +19,8 @@ class ProgramType extends AbstractType
             ->add('title')
             ->add('summary')
             ->add('poster', UrlType::class, [
-                'required' => false
+                'required' => false,
+                'label' => ' '
             ])
             // This will create a select of all names existing in category's table.
             ->add('category', null, ['choice_label' => 'name'])
