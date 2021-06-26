@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Wild Séries | 
-                        		Serie
+                                        		Serie
 
     {{ program.title }}
     Episode
@@ -18,7 +18,7 @@
     <section class="container">
         <div class="row">
             <div class="col col-md-6 col-lg-4 mt-5">
-                <img class="align-self-start  w-100 mt-5 p-5" src="{{program.poster}}" alt="{{ program.title }} poster">
+                <img class="align-self-start  w-100 mt-5 p-5" src="{{ vich_uploader_asset(program) }}" alt="{{ program.title }} poster">
 
                 {% if app.user %}
                     <div class="text-center">
@@ -53,11 +53,11 @@
                 {% else %}
                     <div class="text-center">
                         <button type="button" class="btn btn-warning">
-                             <a href="{{ path('app_login') }}" class="btn">
-                        Login to review this episode</a>
+                            <a href="{{ path('app_login') }}" class="btn">
+                                Login to review this episode</a>
                         </button>
                     </div>
-                    
+
                 {% endif %}
             </div>
             <div class="col col-md-6 col-lg-8 mt-5">
@@ -86,7 +86,9 @@
                 {% for comment in episode.comments | reverse %}
 
                     <div class="card my-3">
-                       <h4 class="card-header">Review n. {{ comment.id }} by
+                        <h4 class="card-header">Review n.
+                            {{ comment.id }}
+                            by
                             {{ comment.author.email }}</h4>
                         <div class="card-body">
                             <p>{{ comment.comment }}</p>
@@ -95,19 +97,23 @@
                                     {{ comment.rate }}</span>
                             </h4>
 
-                        </div>
+                            {% if app.user and app.user == comment.author or is_granted('ROLE_ADMIN') %}
+
+                                {{ include('program/_deleteCommentForm.html.twig') }}
+                            </form>
+                        {% endif %}
+
+
                     </div>
+                </div>
 
 
-                {% endfor %}
-            </div>
-
-
-            <a class="btn btn-dark  w-25 m-auto" href="{{ path('program_index') }}">
-                Return to the Programs page
-            </a>
+            {% endfor %}
         </div>
-    </section>
 
-{% endblock %}
 
+        <a class="btn btn-dark  w-25 m-auto" href="{{ path('program_index') }}">
+            Return to the Programs page
+        </a>
+    </div>
+</section>{% endblock %}
