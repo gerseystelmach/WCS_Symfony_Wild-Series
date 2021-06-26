@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Program
+{% endblock %}
+
+{% block body %}
+<main class="container">
+    <h1 class="mt-5">Edit Program</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.title, {'attr': {'class': 'form-control'}})}}
+    {{ form_row(form.summary, {'attr': {'class': 'form-control'}})}}
+    {{ form_row(form.poster, {'attr': {'disabled': 'disabled', 'class': 'd-none'}})}}
+    {{ form_row(form.posterFile, {'attr': {'class': 'form-control'}})}}
+    {{ form_row(form.category, {'attr': {'class': 'form-control'}})}}
+    {{ form_row(form.actors, {'attr': {'class': 'form-control'}})}}
+    <button class="btn btn-success mt-3 px-4">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+
+
+    <a href="{{ path('program_index') }}" class="btn btn-dark mt-5">Back to the series list</a>
+</main>
+{% endblock %}

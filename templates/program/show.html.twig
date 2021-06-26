@@ -1,69 +1,78 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Wild Séries | Serie
-	{{ program.id }}
-	{{ program.title }}
+    {{ program.id }}
+    {{ program.title }}
 {% endblock %}
 
 {% block stylesheets %}
 
-	{{ parent() }}
+    {{ parent() }}
 {% endblock %}
 
 {% block body %}
-	<section class="container">
-		<div class="row">
-			<div class="col col-sm-12 col-md-12 col-lg-4 mt-5">
-				<img class="align-self-start  w-100 mt-5 p-5" src="{{ vich_uploader_asset(program) }}" alt="{{ program.title }} poster">
-			</div>
-			<div class="col col-sm-12 col-md-12 col-lg-8 mt-5">
+    <section class="container">
+        <div class="row">
+            <div class="col col-sm-12 col-md-12 col-lg-4 mt-5">
+                <img class="align-self-start  w-100 mt-5 p-5" src="{{ vich_uploader_asset(program) }}" alt="{{ program.title }} poster">
 
-				<h1 class="mt-5">{{ program.title }}</h1>
-				<h4 class="mt-5 fw-bold">Category:</h4>
+                <div class="text-center">
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <a href="{{ path('program_edit', { 'program_slug': program.slug} ) }}" class="btn btn-warning">Edit this série</a>
 
-				<p>{{ program.category.name }}</p>
+                    {% endif %}
+                </div>
+            </div>
 
-				<h4 class="mt-5 fw-bold">Summary:</h4>
 
-				<p>{{ program.summary }}</p>
+            <div class="col col-sm-12 col-md-12 col-lg-8 mt-5">
 
-				<h4 class="mt-5 fw-bold">Actors :</h2>
+                <h1 class="mt-5">{{ program.title }}</h1>
+                <h4 class="mt-5 fw-bold">Category:</h4>
 
-				{% for actor in program.actors %}
+                <p>{{ program.category.name }}</p>
 
-					<div class="py-2">
-						<a class="link-secondary" href="{{ path('actor_show', {id: actor.id}) }}">{{ actor.name }}</a>
-					</div>
+                <h4 class="mt-5 fw-bold">Summary:</h4>
 
-				{% else %}
-					<p class="mb-5">No actor found for this serie</p>
-				{% endfor %}
-				<h4 class="mt-5">Seasons:</h4>
-				{% for season in seasons %}
+                <p>{{ program.summary }}</p>
 
-					<p>
-						<a class="btn btn-secondary" href="{{ path("program_season_show", {"program_slug": program.slug, "season_id": season.id}) }}">
-							Season
-							<span class="fw-bold">{{ season.number }}</span>
-						</a>
+                <h4 class="mt-5 fw-bold">Actors :</h2>
 
-						-
-						<span class="fw-bold">Release year:</span>
-						{{ season.year }}</p>
+                {% for actor in program.actors %}
 
-					<p>
-						<span class="fw-bold">Description:</span>
-						{{ season.description }}</p>
+                    <div class="py-2">
+                        <a class="link-secondary" href="{{ path('actor_show', {id: actor.id}) }}">{{ actor.name }}</a>
+                    </div>
 
-				{% else %}
-					No season found in this série :(
-				{% endfor %}
-			</div>
+                {% else %}
+                    <p class="mb-5">No actor found for this serie</p>
+                {% endfor %}
+                <h4 class="mt-5">Seasons:</h4>
+                {% for season in seasons %}
 
-			<a class="btn btn-dark w-25 m-auto my-5" href="{{ path('program_index') }}">
-				Return to the Programs page
-			</a>
+                    <p>
+                        <a class="btn btn-secondary" href="{{ path("program_season_show", {"program_slug": program.slug, "season_id": season.id}) }}">
+                            Season
+                            <span class="fw-bold">{{ season.number }}</span>
+                        </a>
 
-		</div>
-	</section>
+                        -
+                        <span class="fw-bold">Release year:</span>
+                        {{ season.year }}</p>
+
+                    <p>
+                        <span class="fw-bold">Description:</span>
+                        {{ season.description }}</p>
+
+                {% else %}
+                    No season found in this série :(
+                {% endfor %}
+            </div>
+
+            <a class="btn btn-dark w-25 m-auto my-5" href="{{ path('program_index') }}">
+                Return to the Programs page
+            </a>
+
+        </div>
+    </section>
 {% endblock %}

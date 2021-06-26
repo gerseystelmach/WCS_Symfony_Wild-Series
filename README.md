@@ -24,4 +24,6 @@ Quête 19 - Mailer https://www.youtube.com/watch?v=kQ4acsKchDA
 
 Quête 20 - Gestion des utilisateurs https://www.youtube.com/watch?v=QFEfrVIW2rU
 
+Quête 21 - Sécurisons nos routes https://www.youtube.com/watch?v=fTyifcYK_pA
+
 Quête 28 - Upload de médias avec Vich Upload  https://www.youtube.com/watch?v=KIfZX_5VboI

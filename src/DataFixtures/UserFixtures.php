@@ -28,6 +28,8 @@ class UserFixtures extends Fixture
             $contributor,
             'contributorpassword'
         ));
+        // To access the user in others fixtures
+        $this->addReference('user_contributor', $contributor);
 
         $manager->persist($contributor);
 
@@ -39,6 +41,9 @@ class UserFixtures extends Fixture
             $admin,
             'adminpassword'
         ));
+
+        // To access the user in others fixtures
+        $this->addReference('user_admin', $admin);
 
         $manager->persist($admin);
 
